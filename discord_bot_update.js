@@ -3,7 +3,7 @@
 // *javascript review, project scope and guidlines provisioned by freecodecamp.com.  
 
 const application_id =  "1221265758055567360"
-const public_key = "MTIyMTI2NTc1ODA1NTU2NzM2MA.Gc4AJL.urctOpQc7a1W9eA0GcxvQMk5Kdo-NxSvZ1_V9k"
+const public_key = ""
 
 
 
