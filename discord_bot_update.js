@@ -28,7 +28,6 @@ const client = new Client({ intents: [
 client.on('ready', (c) => { 
         console.log(`Logged in as ${client.user.tag}!`);
 });
-client.login('MTIyMTI2NTc1ODA1NTU2NzM2MA.GxMyfO.Xpxk0ETBnoXqxjDdGMBmBSCY56aCrtLggWFObs');
 
 
 
