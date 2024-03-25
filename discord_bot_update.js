@@ -6,8 +6,6 @@ const polygonAPI = require('./stock_logic.js')
 
 
 // API KEY FOR DISCORD
-const application_id =  "1221265758055567360"
-const public_key = "MTIyMTI2NTc1ODA1NTU2NzM2MA.GxMyfO.Xpxk0ETBnoXqxjDdGMBmBSCY56aCrtLggWFObs"
 
 // const { Client, IntentsBitField } = require('discord.js');
 
