@@ -1,5 +1,5 @@
 {
-  "name": "discord_bot.",
+  "name": "discord_bot.js",
   "version": "1.0.0",
   "main": "discord_bot_update.js",
   "scripts": {
@@ -9,8 +9,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@polygon.io/client-js": "^7.3.2",
     "discord.js": "^14.14.1",
     "node-fetch": "^3.3.2"
   },
+
+  "devDependencies": {},
   "description": ""
 }

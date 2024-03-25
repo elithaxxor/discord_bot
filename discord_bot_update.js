@@ -1,14 +1,20 @@
+// import { PolygonAPI } from '/stock_logic.js';
+
+// const PolygonAPI = require('./stock_logic.js')
+//const PolygonAPI = require('./stock_logic.js')
+const polygonAPI = require('./stock_logic.js')
 
 
-// *javascript review, project scope and guidlines provisioned by freecodecamp.com.  
-
+// API KEY FOR DISCORD
 const application_id =  "1221265758055567360"
-const public_key = ""
+const public_key = "MTIyMTI2NTc1ODA1NTU2NzM2MA.GxMyfO.Xpxk0ETBnoXqxjDdGMBmBSCY56aCrtLggWFObs"
 
+// const { Client, IntentsBitField } = require('discord.js');
 
-
+// API KEY FOR POLYGON
+const apiKey = "pnmVOrapMEyGBt2uOl2GBLKvM40CSjsD"
+const stock_apit = "https://api.polygon.io/v2/aggs/ticker/AAPL/range/1/day/2023-01-09/2023-01-09?apiKey=pnmVOrapMEyGBt2uOl2GBLKvM40CSjsD"
 const { Client, IntentsBitField } = require('discord.js');
-
 
 const client = new Client({ intents: [
         IntentsBitField.Flags.Guilds, 
@@ -24,8 +30,100 @@ const client = new Client({ intents: [
 client.on('ready', (c) => { 
         console.log(`Logged in as ${client.user.tag}!`);
 });
+client.login('MTIyMTI2NTc1ODA1NTU2NzM2MA.GxMyfO.Xpxk0ETBnoXqxjDdGMBmBSCY56aCrtLggWFObs');
 
-client.login('MTIyMTI2NTc1ODA1NTU2NzM2MA.Gc4AJL.urctOpQc7a1W9eA0GcxvQMk5Kdo-NxSvZ1_V9k');
+
+
+function validateStockSymbol(symbol) {
+        // Regular expression pattern for stock symbols (e.g., AAPL, MSFT)
+        const pattern = /^[A-Z]{1,5}$/;
+      
+        // Test the symbol against the pattern
+        return pattern.test(symbol);
+      }
+
+
+function getSixthCharacterAndAfter(input) {
+        if (input.length >= 0) {
+          return input.slice(5);
+        } else {
+          return null; // or throw an error, depending on your requirements
+        }
+      }
+      
+      // Exam
+
+function findFirstDollarSignIndex(input) {
+        const match = input.match(/\$/);
+        return match ? match.index : -1;
+      }
+
+ function removeDollarSign(input) {
+        return input.replace(/\$/g, '');
+      }
+
+function getPrices(symbol) {
+
+        let lsymbol = symbol.toUpperCase()
+        console.log("L SYMBOL" , lsymbol)
+        const api = new polygonAPI()
+
+        let noDollarSign = removeDollarSign(lsymbol)
+        console.log("[NO DOLLAR SIGN ", noDollarSign)
+        console.log("[NO DOLLAR SIGN ", noDollarSign.length)
+
+        api.getStockPriceI(noDollarSign).then(price => {
+                console.log(noDollarSign, 'price:', price);
+              }).catch(error => {
+                console.error('Error:', error);
+              });
+              
+              api.getStockPriceI('AAPL,MSFT').then(prices => {
+                console.log('AAPL,MSFT prices:', prices);
+              }).catch(error => {
+                console.error('Error:', error);
+              });
+}
+
+
+
+
+
+client.on('messageCreate', (message) => {
+
+        const substring = "fetch $";
+
+        console.log(`Message created, ${message.content}`);
+
+        if (message.content ==='hi'){
+                message.reply('welcome to the server! ')
+        }
+
+
+        if (message.content.includes(substring)) {
+                console.log("[SUBSTRING FOUND] " + substring)
+                console.log(`[MESSAGE], ${message.content}`);
+
+                let msg = message.content
+                let change = getSixthCharacterAndAfter(msg)      
+                let symbol = findFirstDollarSignIndex(change)
+                console.log("[CHANGE] " + change)
+                console.log("[symbol] " + symbol)
+                message.reply('fetching symbol' + change)
+                let noSymbol = change.slice(1);
+                console.log("CONVERTED WITHOUT SYMBOL " + noSymbol)
+                message.reply(getPrices(noSymbol))
+
+
+        }
+
+
+
+        if (message.content ==='help'){
+                message.reply('insert help content! ')
+        }}
+        );
+        
 
 
 
@@ -37,11 +135,10 @@ client.login('MTIyMTI2NTc1ODA1NTU2NzM2MA.Gc4AJL.urctOpQc7a1W9eA0GcxvQMk5Kdo-NxSv
 // const { token } = require('./package.json');
 
 // // const Discord=require('discord.js');
-// // const fetch = require('node-fetch');
+// const fetch = require('node-fetch');
 // const Database = require('@replit/database'); // require is node
-
-// const sad_words = ['sad', 'angry','depressed','so-so',];
-// const happy_words = ['happy', 'ecstatic','ebullient','maniac',];
+// const sad_words = ['sad', 'angry','depressed','so-so'];
+// const happy_words = ['happy', 'ecstatic','ebullient','maniac'];
 // const starterEncouragements = ['cheer up', 'you will get through this'];
 // const db = new Database();
 
