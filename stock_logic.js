@@ -2,7 +2,6 @@
 //import { restClient } from '@polygon.io/client-js';
 
 
-const apiKey = "pnmVOrapMEyGBt2uOl2GBLKvM40CSjsD"
 const stock_apit = "https://api.polygon.io/v2/aggs/ticker/AAPL/range/1/day/2023-01-09/2023-01-09?apiKey=pnmVOrapMEyGBt2uOl2GBLKvM40CSjsD"
 
 
