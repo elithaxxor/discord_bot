@@ -12,7 +12,7 @@ const public_key = "ENTER API KEY "
 
 // API KEY FOR POLYGON
 const apiKey = "="
-const stock_apit = "https://api.polygon.io/v2/aggs/ticker/AAPL/range/1/day/2023-01-09/2023-01-09?apiKey=pnmVOrapMEyGBt2uOl2GBLKvM40CSjsD"
+const stock_apit = "https://api.polygon.io/v2/aggs/ticker/AAPL/range/1/day/2023-01-09/2023-01-09?apiKey=ENTER API KEY"
 const { Client, IntentsBitField } = require('discord.js');
 
 const client = new Client({ intents: [
