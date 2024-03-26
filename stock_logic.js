@@ -1,23 +1,29 @@
 
 //import { restClient } from '@polygon.io/client-js';
+//import {Receive} from './discord_bot_update.js';
 
 
 const stock_apit = "https://api.polygon.io/v2/aggs/ticker/AAPL/range/1/day/2023-01-09/2023-01-09?apiKey=pnmVOrapMEyGBt2uOl2GBLKvM40CSjsD"
 
 
+const bot = require('./discord_bot_update.js')
 
+// const bot = Receive()
 
 // const polygonAPI = new PolygonAPI(apiKey);
 
 
 
 class PolygonAPI {
+    
         constructor(apiKey) {
-          this.apiKey = apiKey;
+          this.apiKey = "guK_AGHC6gKx_z_G3x8r7YRPBgMrEzN7"
+        //  this.apiKey = apiKey;
           this.baseURL = 'https://api.polygon.io';
+          this.data = ''
           
         }
-      
+     
         async getStockPriceI(symbol) {
         try {
           const url = `${this.baseURL}/v2/aggs/ticker/${symbol}/prev`;
@@ -28,8 +34,21 @@ class PolygonAPI {
       
             const response = await fetch(`${url}?${queryString}`);
             const data = await response.json();
-            if (data && data.results && data.results.length > 0) {
-              return data.results[0].c; // Return the closing price
+            console.log("[DATA", data)
+
+            let toData = JSON.stringify(data);
+            this.data = toData
+
+
+             // let send = new bot() 
+//             send.Receive.printData()
+            console.log("[sending DATA]", data)
+            
+//            send.Receive.receiveData(toData)
+
+            if (data) {
+                console.log("[DATA", data)
+              return data; // Return the closing price
             }
             throw new Error('No data found');
           } catch (error) {

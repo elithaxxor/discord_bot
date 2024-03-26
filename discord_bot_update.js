@@ -4,8 +4,9 @@
 //const PolygonAPI = require('./stock_logic.js')
 const polygonAPI = require('./stock_logic.js')
 
-
 // API KEY FOR DISCORD
+const application_id =  "1221265758055567360"
+const public_key = "MTIyMTI2NTc1ODA1NTU2NzM2MA.GDi_BA.UMrBAiwWklQhb2zE0tk1MmZX3V6RwWc_lIrMls"
 
 // const { Client, IntentsBitField } = require('discord.js');
 
@@ -28,7 +29,7 @@ const client = new Client({ intents: [
 client.on('ready', (c) => { 
         console.log(`Logged in as ${client.user.tag}!`);
 });
-
+client.login('MTIyMTI2NTc1ODA1NTU2NzM2MA.GDi_BA.UMrBAiwWklQhb2zE0tk1MmZX3V6RwWc_lIrMls');
 
 
 function validateStockSymbol(symbol) {
@@ -59,6 +60,14 @@ function findFirstDollarSignIndex(input) {
         return input.replace(/\$/g, '');
       }
 
+
+function waitThreeSeconds() {
+        setTimeout(() => {
+          console.log('Waited for 3 seconds');
+        }, 3000);
+      }
+      
+
 function getPrices(symbol) {
 
         let lsymbol = symbol.toUpperCase()
@@ -70,19 +79,66 @@ function getPrices(symbol) {
         console.log("[NO DOLLAR SIGN ", noDollarSign.length)
 
         api.getStockPriceI(noDollarSign).then(price => {
+                console.log("[!] RUNNING STOCK PRICE AND RETURING DATA")
                 console.log(noDollarSign, 'price:', price);
-              }).catch(error => {
-                console.error('Error:', error);
-              });
+                console.log("[!] Waiting for 3 seconds")
+                waitThreeSeconds()
+
+               //displayMsg(noDollarSign)
+              // message.reply(price)
+               // message.reply(Receive.receiveData())
+               console.log("[!] Message sent to display manager (func displayMsg)")
+               console.log("[+]         price ", price )
+               console.log("[+] noDollarSign ", noDollarSign )
+
+            
               
-              api.getStockPriceI('AAPL,MSFT').then(prices => {
-                console.log('AAPL,MSFT prices:', prices);
-              }).catch(error => {
-                console.error('Error:', error);
-              });
+                client.on('messageCreate', (message) => {
+                        waitThreeSeconds()
+                
+                        const disp = JSON.stringify(message);
+                        console.log("[+] [DISP", disp)
+                        console.log("[+] [DISP LENGTH]", disp.length)
+                        message.reply(disp)
+                })
+
+                }).catch(error => {
+                        console.error('Error:', error);
+                }).catch(error => {
+                        console.error('Error:', error);
+                });
+        }
+
+
+class Receive {
+        receiveData(data) {
+                let api = new polygonAPI() 
+                data = api.data
+                console.log(data)
+                message.reply(data)
+
+          console.log("Data received in ClassB:", data);
+          message.reply(data)
+        }
+
+         printData() {
+                let api = new polygonAPI() 
+                data = api.data
+                console.log(data)
+                message.reply(data)
+        }
+      }
+
+
+function displayMsg(message) {
+        const disp = JSON.stringify(message);
+
+        client.on('messageCreate', (msg) => {
+                console.log("[+] displaying message", message)
+                console.log("[+] displaying jsonfied message ", disp)
+                message.reply(message.JSON.stringify())
+        })
 }
-
-
 
 
 
@@ -125,6 +181,7 @@ client.on('messageCreate', (message) => {
 
 
 
+module.exports = Receive // 👈 Export class
 
 
 
@@ -255,4 +312,4 @@ client.on('messageCreate', (message) => {
 //         }
 //         }
 // });
-// client.login(process.env.TOKEN);
+// client.login(process.env.TOKEN
