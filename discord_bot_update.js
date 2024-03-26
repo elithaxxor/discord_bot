@@ -6,12 +6,12 @@ const polygonAPI = require('./stock_logic.js')
 
 // API KEY FOR DISCORD
 const application_id =  "1221265758055567360"
-const public_key = "MTIyMTI2NTc1ODA1NTU2NzM2MA.GDi_BA.UMrBAiwWklQhb2zE0tk1MmZX3V6RwWc_lIrMls"
+const public_key = ""
 
 // const { Client, IntentsBitField } = require('discord.js');
 
 // API KEY FOR POLYGON
-const apiKey = "pnmVOrapMEyGBt2uOl2GBLKvM40CSjsD"
+const apiKey = "="
 const stock_apit = "https://api.polygon.io/v2/aggs/ticker/AAPL/range/1/day/2023-01-09/2023-01-09?apiKey=pnmVOrapMEyGBt2uOl2GBLKvM40CSjsD"
 const { Client, IntentsBitField } = require('discord.js');
 
