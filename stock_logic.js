@@ -17,7 +17,7 @@ const bot = require('./discord_bot_update.js')
 class PolygonAPI {
     
         constructor(apiKey) {
-          this.apiKey = "guK_AGHC6gKx_z_G3x8r7YRPBgMrEzN7"
+          this.apiKey = ""
         //  this.apiKey = apiKey;
           this.baseURL = 'https://api.polygon.io';
           this.data = ''
