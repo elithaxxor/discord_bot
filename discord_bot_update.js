@@ -6,7 +6,7 @@ const polygonAPI = require('./stock_logic.js')
 
 // API KEY FOR DISCORD
 const application_id =  "1221265758055567360"
-const public_key = ""
+const public_key = "ENTER API KEY "
 
 // const { Client, IntentsBitField } = require('discord.js');
 
@@ -29,7 +29,7 @@ const client = new Client({ intents: [
 client.on('ready', (c) => { 
         console.log(`Logged in as ${client.user.tag}!`);
 });
-client.login('MTIyMTI2NTc1ODA1NTU2NzM2MA.GDi_BA.UMrBAiwWklQhb2zE0tk1MmZX3V6RwWc_lIrMls');
+client.login('ENTER APIKEY');
 
 
 function validateStockSymbol(symbol) {
@@ -91,15 +91,28 @@ function getPrices(symbol) {
                console.log("[+]         price ", price )
                console.log("[+] noDollarSign ", noDollarSign )
 
-            
+               console.log("*************************************************" )
+
               
                 client.on('messageCreate', (message) => {
                         waitThreeSeconds()
-                
+                        console.log("[+] [message", message)
+ 
                         const disp = JSON.stringify(message);
                         console.log("[+] [DISP", disp)
                         console.log("[+] [DISP LENGTH]", disp.length)
-                        message.reply(disp)
+                        console.log("[+] MESSAGE ", message)
+
+                        console.log("[+] API_DATA ", api.data)
+                        message.reply(api.data)
+
+                        waitThreeSeconds()
+                        if (disp){
+                                console.log("[!] Disp passed")
+                                message.reply("AAPL", api.data)
+                                message.reply("AAPL ". disp) 
+
+                        }
                 })
 
                 }).catch(error => {
@@ -124,7 +137,7 @@ class Receive {
          printData() {
                 let api = new polygonAPI() 
                 data = api.data
-                console.log(data)
+                console.log("[FUNC PRINTDATA] " ,data)
                 message.reply(data)
         }
       }
